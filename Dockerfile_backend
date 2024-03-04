@@ -1,0 +1,29 @@
+# Use the official Node.js image as the base image for backend
+FROM node:20.0.0-alpine AS backend
+
+# Set the working directory for backend
+WORKDIR /app/quirknotes/backend
+
+# Copy backend package files
+COPY quirknotes/backend/package*.json ./
+
+#install dependencies
+RUN npm install express mongodb bcrypt jsonwebtoken
+RUN npm install --save-dev nodemon
+
+#copy source code
+COPY quirknotes/backend ./
+
+# Expose the port your app runs on
+EXPOSE 4000
+
+# Command to run your application
+CMD ["npm", "start"]
+
+
+
+
+
+
+
+
